@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#121316">
+<title>Pipetta</title>
+<link rel="stylesheet" href="pipetta.css?v=1">
+</head>
+<body>
+<div id="app">
+  <div id="viewer">
+    <video id="video" playsinline muted autoplay></video>
+    <canvas id="still"></canvas>
+    <div id="placeholder">
+      <svg viewBox="0 0 24 24" class="ph-ico"><path d="M14.5 4.5l5 5M17 2.8a2.3 2.3 0 0 1 3.2 3.2L17.5 8.7l-3.2-3.2zM14.3 5.5l-9 9-1 4.2 4.2-1 9-9"/></svg>
+      <p id="phMsg">Inquadra un colore con la fotocamera<br>oppure apri una foto.</p>
+    </div>
+    <div id="reticle"><div class="ring"></div><i class="t n"></i><i class="t s"></i><i class="t e"></i><i class="t w"></i></div>
+    <canvas id="loupe"></canvas>
+    <div id="modeTag"></div>
+    <div id="chips">
+      <button id="btnTorch" class="chip" hidden aria-label="Torcia">
+        <svg viewBox="0 0 24 24"><path d="M8 2h8l-1.5 5h-5zM9.5 7h5v14h-5zM12 11v3"/></svg>
+      </button>
+      <button id="btnSize" class="chip" aria-label="Area di misura"><span class="dot"></span><span id="sizeLbl">piccolo</span></button>
+    </div>
+  </div>
+
+  <section id="panel">
+    <button id="reading" aria-label="Dettagli del colore">
+      <span id="swatch"><span id="swRef"></span></span>
+      <span id="names">
+        <span id="nameIt">—</span>
+        <span id="nameCss">&nbsp;</span>
+        <span id="descr">&nbsp;</span>
+      </span>
+    </button>
+
+    <div id="values">
+      <button class="val" data-k="hex"><span class="k">HEX</span><span class="v" id="vHex">—</span><svg class="cp" viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V5a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h3"/></svg></button>
+      <button class="val" data-k="rgb"><span class="k">RGB</span><span class="v" id="vRgb">—</span><svg class="cp" viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V5a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h3"/></svg></button>
+      <button class="val" data-k="hsl"><span class="k">HSL</span><span class="v" id="vHsl">—</span><svg class="cp" viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V5a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h3"/></svg></button>
+    </div>
+
+    <div id="palette"><span id="palHint">I colori salvati compaiono qui</span></div>
+
+    <nav id="bar">
+      <button id="btnCam"><svg viewBox="0 0 24 24"><path d="M4 8h3l2-3h6l2 3h3a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/><circle cx="12" cy="13" r="3.5"/></svg><span>Fotocamera</span></button>
+      <button id="btnPhoto"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="9.5" r="1.6"/><path d="M3.5 18l5.5-5.5 4 4 2.5-2.5 5 5"/></svg><span>Foto</span></button>
+      <button id="btnFreeze" disabled><svg viewBox="0 0 24 24" id="icoFreeze"><path d="M9 5v14M15 5v14"/></svg><span id="lblFreeze">Blocca</span></button>
+      <button id="btnSave" disabled><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 8v8M8 12h8"/></svg><span>Salva</span></button>
+    </nav>
+    <div id="ver"></div>
+  </section>
+
+  <input type="file" id="file" accept="image/*" hidden>
+
+  <div id="sheet" hidden>
+    <div id="sheetCard">
+      <div id="shHead">
+        <span id="shSwatch"></span>
+        <span id="shNames"><span id="shIt"></span><span id="shCss"></span></span>
+      </div>
+      <div id="shValues"></div>
+      <div id="shNearTitle">I nomi più vicini</div>
+      <div id="shNear"></div>
+      <div id="shBtns">
+        <button id="shDel" hidden>Elimina</button>
+        <button id="shClose">Chiudi</button>
+      </div>
+    </div>
+  </div>
+  <div id="toast"></div>
+</div>
+<script src="pipetta-nomi.js?v=1"></script>
+<script src="pipetta.js?v=1"></script>
+</body>
+</html>
